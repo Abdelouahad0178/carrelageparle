@@ -3,7 +3,14 @@ const recognizedText = document.getElementById("recognizedText");
 const translatedText = document.getElementById("translatedText");
 
 // Accéder à la caméra
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+    .then(stream => {
+        video.srcObject = stream;
+    })
+    .catch(error => {
+        console.error("Erreur lors de l'accès à la caméra :", error);
+    });
+
 
     .then(stream => {
         video.srcObject = stream;
